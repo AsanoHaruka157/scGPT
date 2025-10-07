@@ -1,18 +1,21 @@
-'''
-Description:
-    Visualization.
-
-Author:
-    Jiaqi Zhang <jiaqi_zhang2@brown.edu>
-'''
+import sys
+import os
 import numpy as np
-import tabulate
 import pandas as pd
+import tabulate
 from sklearn.neighbors import NearestNeighbors
+
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.insert(0, project_root)
+
 from plotting.__init__ import *
 from plotting import _removeAllBorders, _removeTopRightBorders
+import matplotlib
+matplotlib.rcParams['font.sans-serif'] = ['DejaVu Sans', 'Arial', 'Helvetica', 'Verdana', 'sans-serif']
+matplotlib.rcParams['font.family'] = "sans-serif"
+matplotlib.rcParams['axes.unicode_minus'] = False
 
-# ======================================
+# ======================================================
 
 def plotPredAllTime(true_umap_traj, pred_umap_traj, true_cell_tps, pred_cell_tps):
     '''Plot predictions at all timepoints.'''
@@ -33,8 +36,16 @@ def plotPredAllTime(true_umap_traj, pred_umap_traj, true_cell_tps, pred_cell_tps
     plt.show()
 
 
-def plotPredTestTime(true_umap_traj, pred_umap_traj, true_cell_tps, pred_cell_tps, test_tps):
-    '''Plot predictions at testing timepoints.'''
+def plotPredTestTime(true_umap_traj, pred_umap_traj, true_cell_tps, pred_cell_tps, test_tps, save_path=None):
+    '''
+    Plot true and reconstructed data only at testing timepoints.
+    :param true_umap_traj (np.ndarray): True UMAP trajectory.
+    :param pred_umap_traj (np.ndarray): Predicted UMAP trajectory.
+    :param true_cell_tps (np.ndarray): True cell timepoints.
+    :param pred_cell_tps (np.ndarray): Predicted cell timepoints.
+    :param test_tps (list): A list of testing timepoints.
+    :param save_path (str or None): Path to save the figure. If None, show the figure.
+    '''
     n_tps = len(np.unique(true_cell_tps))
     # color_list = linearSegmentCMap(n_tps, "viridis")
     n_test_tps = len(test_tps)
@@ -53,7 +64,15 @@ def plotPredTestTime(true_umap_traj, pred_umap_traj, true_cell_tps, pred_cell_tp
         ax2.scatter(pred_umap_traj[pred_t_idx, 0], pred_umap_traj[pred_t_idx, 1], label=int(t), color=c, s=20, alpha=1.0)
     ax2.legend(loc="center left", bbox_to_anchor=(1.0, 0.5))
     # plt.tight_layout()
-    plt.show()
+    ax2.set_xlabel("UMAP-1")
+    ax2.set_ylabel("UMAP-2")
+    _removeTopRightBorders(ax2)
+
+    if save_path:
+        print(f"   Saving figure to {save_path}...")
+        plt.savefig(save_path, dpi=300, bbox_inches='tight')
+    else:
+        plt.show()
 
 # ======================================
 def compareUMAPTestTime(
