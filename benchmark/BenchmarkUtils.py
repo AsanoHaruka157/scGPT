@@ -106,7 +106,9 @@ def loadSCData(data_name, split_type, data_dir=None):
     cell_tps = ann_data.obs["tp"]
     n_tps = len(np.unique(cell_tps))
     n_genes = ann_data.shape[1]
-    return processed_data, cell_tps, cell_types, n_genes, n_tps
+    all_tps = np.arange(n_tps)
+    print("Dataset is loaded.")
+    return ann_data, cell_tps, cell_types, n_genes, n_tps, all_tps
 
 
 def tpSplitInd(data_name, split_type):
