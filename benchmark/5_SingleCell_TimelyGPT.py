@@ -268,13 +268,13 @@ print("="*70)
 print("1. CONFIGURATION")
 # --- 配置 ---
 DATA_NAME, SPLIT_TYPE = "zebrafish", "three_interpolation"
-LATENT_DIM = 50
+LATENT_DIM = 64
 LATENT_COEFF = 1.0  # Regularization coefficient for latent trajectory smoothing (beta)
-N_PRED_CELLS = 2000  # Number of cells to predict
-MAX_EPOCHS = 100  # Maximum number of epochs
+N_PRED_CELLS = 5000  # Number of cells to predict
+MAX_EPOCHS = 20  # Maximum number of epochs
 EARLY_STOP_PATIENCE = 10  # Stop if best model is not updated for this many epochs
 BATCH_SIZE = 32
-PRETRAIN_LR = 1e-4
+PRETRAIN_LR = 3e-4
 PRETRAIN_ITERS = 500  # Number of pre-training iterations
 LR = 1e-3
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
@@ -317,7 +317,7 @@ vae = VAE(n_genes, LATENT_DIM).to(DEVICE)
 # 关键设置：use_default_gamma=True → 使用固定衰减向量
 timely_gpt_config = RetNetConfig(
     num_layers=3,
-    num_heads=5,  # 必须能整除v_dim
+    num_heads=8,  # 必须能整除v_dim
     d_model=LATENT_DIM,
     qk_dim=LATENT_DIM,
     v_dim=LATENT_DIM,
