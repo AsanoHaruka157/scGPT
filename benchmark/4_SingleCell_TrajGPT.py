@@ -27,8 +27,8 @@ project_root = os.path.dirname(current_dir)
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
-from models.TrajGPT import TrajGPT
-from layers.configs import TrajGPTConfig
+from TrajGPT.TrajGPT import TrajGPT
+from TrajGPT.configs import TrajGPTConfig
 
 # --- 2. 导入工具函数 (来自 scNODE 项目) ---
 from benchmark.BenchmarkUtils import loadSCData, tpSplitInd, splitBySpec
