@@ -9,7 +9,7 @@ import torch
 import torch.nn as nn
 import torch.distributions as dist
 import numpy as np
-from model.layer import LinearNet, LinearVAENet
+from model.scNODE.layer import LinearNet, LinearVAENet
 
 # ===========================================
 

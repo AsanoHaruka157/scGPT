@@ -10,11 +10,11 @@ from tqdm import tqdm
 import numpy as np
 import itertools
 
-from model.layer import LinearNet, LinearVAENet
-from model.diff_solver import ODE
-from model.dynamic_model import scNODE
+from model.scNODE.layer import LinearNet, LinearVAENet
+from model.scNODE.diff_solver import ODE
+from model.scNODE.dynamic_model import scNODE
 from optim.loss_func import SinkhornLoss, MSELoss
-from benchmark.BenchmarkUtils import sampleGaussian
+from notebooks.BenchmarkUtils import sampleGaussian
 
 # =============================================
 
