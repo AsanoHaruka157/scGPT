@@ -257,15 +257,6 @@ def plotPredTestTime(true_umap, pred_umap, true_tps, pred_tps, test_tps_list, sa
         print(f"Figure saved to {save_path}")
     plt.close()
 
-
-print("="*70)
-print("TimelyGPT with VAE for Single-Cell Trajectory Modeling")
-print("Following scNODE algorithm structure:")
-print("  1. Fast Pre-training: Train VAE encoder/decoder only (MSE, no KL)")
-print("  2. Dynamic Training: Sample from first timepoint, use Sinkhorn + latent smoothing")
-print("  3. Prediction: Start from real t0 cells (not prior sampling)")
-print("="*70)
-print("1. CONFIGURATION")
 # --- 配置 ---
 DATA_NAME, SPLIT_TYPE = "zebrafish", "three_interpolation"
 LATENT_DIM = 64
@@ -302,10 +293,6 @@ print(f"# timepoints={n_tps}, # genes={n_genes}")
 print(f"# cells per timepoint: {n_cells}")
 print(f"Train timepoints: {train_tps_idx}")
 print(f"Test timepoints: {test_tps_idx}")
-
-# Prepare training data in the same format as scNODE
-# train_data and test_data are already split by timepoints
-print("Using VAE for dimensionality reduction (following scNODE algorithm).")
 
 print("-"*70)
 print("3. MODEL INITIALIZATION")
