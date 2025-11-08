@@ -54,8 +54,8 @@ def plotPredTestTime(true_umap_traj, pred_umap_traj, true_cell_tps, pred_cell_tp
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
     ax1.set_title("True Data", fontsize=15)
     ax2.set_title("Predictions", fontsize=15)
-    ax1.scatter(true_umap_traj[:, 0], true_umap_traj[:, 1], label="other", c=gray_color, s=40, alpha=0.5)
-    ax2.scatter(true_umap_traj[:, 0], true_umap_traj[:, 1], label="other", c=gray_color, s=40, alpha=0.5)
+    ax1.scatter(true_umap_traj[:, 0], true_umap_traj[:, 1], label="other", color=gray_color, s=40, alpha=0.5)
+    ax2.scatter(true_umap_traj[:, 0], true_umap_traj[:, 1], label="other", color=gray_color, s=40, alpha=0.5)
     for i, t in enumerate(test_tps):
         c = color_list[i]
         true_t_idx = np.where(true_cell_tps == t)[0]

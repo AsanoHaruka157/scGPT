@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 from torch import Tensor
 from typing import Tuple
-from layers.snippets import Transpose
+from model.TimelyGPT_CTS.layers.snippets import Transpose
 
 class Swish(nn.Module):
     """

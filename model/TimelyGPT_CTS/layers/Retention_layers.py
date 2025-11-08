@@ -1,13 +1,13 @@
 import time
 from typing import List, Optional, Tuple, Union
-from layers.configs import RetNetConfig
+from model.TimelyGPT_CTS.layers.configs import RetNetConfig
 import torch
 import torch.utils.checkpoint
 from torch import nn
 from transformers.utils import logging
-from layers.Xpos import XPOS
-from layers.Conv_layers import TemporalConvModule
-from layers.snippets import get_gpu_memory_usage
+from model.TimelyGPT_CTS.layers.Xpos import XPOS
+from model.TimelyGPT_CTS.layers.Conv_layers import TemporalConvModule
+from model.TimelyGPT_CTS.layers.snippets import get_gpu_memory_usage
 import gc
 
 logger = logging.get_logger(__name__)
