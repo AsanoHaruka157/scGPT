@@ -1,0 +1,7 @@
+data/
+models/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+*.h5ad
+*.sh
